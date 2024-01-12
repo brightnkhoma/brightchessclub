@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "node api/index.js",
-    "build": "npm install && npm run build --prefix chess"
+    "build": "npm install --prefix chess && npm run build --prefix chess && npm run build --prefix api"
   },
   "dependencies": {
     "cors": "^2.8.5",
