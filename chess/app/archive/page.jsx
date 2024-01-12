@@ -42,7 +42,7 @@ function Page() {
   const [open, setopen] = useState(false);
   const [play, setplay] = useState(false)
   const chess = useMemo(()=>new Chess(),[]);
-  const custom = useMemo(()=>new CustomChess(chess),[]);
+  const custom = useMemo(()=>{return new CustomChess(chess)},[chess]);
   const [game, setgame] = useState(chess.fen());
     
   const [fetchedGame, setfetchedGame] = useState({header:null,pgn:null});
@@ -63,7 +63,7 @@ function Page() {
       load()
     },1200)
     
-  },[play,point])
+  },[play,point,load])
   useEffect(()=>{
     const get = (data)=>{
      
@@ -86,7 +86,7 @@ function Page() {
   useEffect(()=>{
     counter(players[index])
     
-  },[index, players])
+  },[index, players, fecthIt])
   const load = ()=>{   
     if (point >= pgn.length){
       play && setplay(false);
