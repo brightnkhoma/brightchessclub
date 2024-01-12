@@ -16,7 +16,7 @@ function Page() {
     return()=>{
       socket.disconnect();
     }
-  })
+  },[])
 
   const players = [
     'Steinitz',
@@ -78,7 +78,7 @@ function Page() {
       socket.off('get_game',get);
       socket.off('count',getCount);
     }
-  },[])
+  },[setfetchedGame, setcount])
   useEffect(()=>{
     fecthIt()   
    
@@ -86,7 +86,7 @@ function Page() {
   useEffect(()=>{
     counter(players[index])
     
-  },[index])
+  },[index, players])
   const load = ()=>{   
     if (point >= pgn.length){
       play && setplay(false);
