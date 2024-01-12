@@ -57,6 +57,18 @@ function Page() {
     const filtered = game?.filter(data=>data[data.length - 1] !== '.');
     return filtered;    
   },[fetchedGame])
+  const fecthIt = useCallback(() => {
+    fetchGame(players[index], pgnNumber);
+  }, [index, pgnNumber, players, fetchGame]);
+  const load = useCallback(() => {
+    if (point >= pgn.length) {
+      play && setplay(false);
+      return;
+    }
+    const x = pgn.slice(0, point + 1).join(' ');
+    custom.pgn(x, setgame);
+    setpoint(point => point + 1);
+  }, [point, pgn, play, setplay, custom, setgame]);
   useEffect(()=>{
     if (!play) return;
     setTimeout(()=>{
@@ -87,15 +99,7 @@ function Page() {
     counter(players[index])
     
   },[index, players, fecthIt])
-  const load = useCallback(() => {
-    if (point >= pgn.length) {
-      play && setplay(false);
-      return;
-    }
-    const x = pgn.slice(0, point + 1).join(' ');
-    custom.pgn(x, setgame);
-    setpoint(point => point + 1);
-  }, [point, pgn, play, setplay, custom, setgame]);
+ 
   const undo = ()=>{
     if(play){
       return setplay(false)
@@ -137,9 +141,7 @@ function Page() {
     setpoint(0);
     custom.reset(setgame)
   }
-  const fecthIt = useCallback(() => {
-    fetchGame(players[index], pgnNumber);
-  }, [index, pgnNumber, players, fetchGame]);
+ 
 
   return (
     <div className='h-max min-h-screen sm:h-[91vh] mt-5'>
