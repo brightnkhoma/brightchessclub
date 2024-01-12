@@ -6,7 +6,7 @@ import cors from 'cors'
 import { count } from 'node:console'
 
 const app = express();
-app.use(cors);
+app.use(cors());
 const server = createServer(app);
 const io = new Server(server,
     {
