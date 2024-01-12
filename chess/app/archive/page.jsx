@@ -18,7 +18,7 @@ function Page() {
     }
   },[])
 
-  const players = [
+  const players = useMemo(()=>([
     'Steinitz',
     'Alekhine',
     'Anand',
@@ -33,7 +33,7 @@ function Page() {
     'world1972',
     'world2021',
     'world2023',
-  ]
+  ]),[]) 
   const [pgnNumber, setpgnNumber] = useState(0)
   const [index, setindex] = useState(0); 
 
