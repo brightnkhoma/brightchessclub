@@ -2,7 +2,7 @@
 import React from 'react'
 import {Chessboard} from 'react-chessboard'
 import { Chess } from 'chess.js'
-import { useState,useMemo,useEffect } from 'react';
+import { useState,useMemo,useEffect,useCallback } from 'react';
 import {FaPause, FaGreaterThan, FaPlay, FaLessThan} from 'react-icons/fa'
 import {HiMenu} from 'react-icons/hi'
 import CustomChess from '../lib/actions';
@@ -82,21 +82,20 @@ function Page() {
   useEffect(()=>{
     fecthIt()   
    
-  },[index,pgnNumber])
+  },[index,pgnNumber,fecthIt])
   useEffect(()=>{
     counter(players[index])
     
   },[index, players, fecthIt])
-  const load = ()=>{   
-    if (point >= pgn.length){
+  const load = useCallback(() => {
+    if (point >= pgn.length) {
       play && setplay(false);
       return;
     }
-    const x = pgn.slice(0,point+1).join(' ');
-    custom.pgn(x,setgame); 
-    setpoint(point=>point+1);
-    
-  }
+    const x = pgn.slice(0, point + 1).join(' ');
+    custom.pgn(x, setgame);
+    setpoint(point => point + 1);
+  }, [point, pgn, play, setplay, custom, setgame]);
   const undo = ()=>{
     if(play){
       return setplay(false)
@@ -138,9 +137,9 @@ function Page() {
     setpoint(0);
     custom.reset(setgame)
   }
-  const fecthIt = ()=>{
-    fetchGame(players[index],pgnNumber);    
-  }
+  const fecthIt = useCallback(() => {
+    fetchGame(players[index], pgnNumber);
+  }, [index, pgnNumber, players, fetchGame]);
 
   return (
     <div className='h-max min-h-screen sm:h-[91vh] mt-5'>
