@@ -3,7 +3,7 @@ import React from 'react'
 import { Header } from './ui/Header'
 
 
-function layout({children}) {
+function Layout({children}) {
   return (
     <html lang='en'>
         <div className='flex flex-col justify-center '>            
@@ -18,4 +18,4 @@ function layout({children}) {
   )
 }
 
-export default layout
+export default Layout

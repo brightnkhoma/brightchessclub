@@ -10,7 +10,7 @@ import {socket} from '../lib/socket/socket.io'
 import {counter,counted,fetchGame,getGame} from '../lib/socket/socket.manager/manager.js'
 
 
-function page() {
+function Page() {
   useEffect(()=>{
     socket.connect();
     return()=>{
@@ -326,4 +326,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

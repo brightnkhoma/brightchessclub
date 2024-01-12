@@ -4,7 +4,7 @@ import {FaTrophy} from 'react-icons/fa'
 import Link from 'next/link.js';
 
 
-function page() {
+function Page() {
   const activities = [
     {name : 'puzzle', desc : 'Improve your skills with puzzles',href: '/puzzle'},
     {name : 'Play against computer', desc : 'Challenge yourself against chess engine',href: '/engine'},
@@ -45,4 +45,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
